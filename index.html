@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo de Productos</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./disponibles.html">Disponibles</a></li>
-                <li><a href="./deluxe.html">Deluxe</a></li>
-                <li><a href="./economicos.html">Economicos</a></li>
-                <li><a href="./premium.html">Premium</a></li>
-            </ul>
+            <div class="nav">
+                <ul><a href="./index.html">Inicio</a></ul>
+                <ul><a href="./disponibles.html">Disponibles</a></ul>
+                <ul><a href="./economicos.html">Economicos</a></ul>
+                <ul><a href="./premium.html">Premium</a></ul>   
+            </div>
         </nav>
     </header>
     <h1>
@@ -22,24 +22,37 @@
     </h1>
     <main>
         <section>
-            <div style="width:fit-content;">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil officiis error inventore excepturi tempora velit doloribus sequi. Perspiciatis ullam alias aliquid odio exercitationem consequatur magni autem dolorum. Aut, doloremque sapiente!
-                    Perspiciatis assumenda ullam, vel dolores harum officia adipisci eos. Debitis officiis numquam quidem pariatur beatae quia deserunt eum, placeat odio adipisci eligendi explicabo corporis mollitia provident alias non perspiciatis deleniti!
-                    Doloribus sint commodi porro facere perferendis deleniti, praesentium exercitationem. Quidem consequuntur, ut odio autem eius, rerum ab quaerat labore, mollitia praesentium illum. Esse quo cumque nostrum, optio nisi laboriosam quis!
-                </p>
+            <div>
                 <div>
                     <img src="./img/CyberTruck.jpg" alt="CyberTruck">
                     <br>
-                    <button>Comprar</button>
+                    <button type="submit" name="form">Comprar</button>
                 </div>
-             
-                <br>
                 <div>
-                    <a href="http://google.com" target="_blank">Ir a google!</a>
+                    <p>Cyber truck is a good design for family</p>
                 </div>
-                    
             </div>
         </section>
+        <footer>
+            <form action="" method="get">
+                <div>
+                    <label for="name">Enter your name</label>
+                    <input type="text" required>
+                </div>
+                <div>
+                    <label for="email">Enter your email</label>
+                    <input type="email" name="email" id="" required>
+                </div>
+                <div>
+                    <label for="password">Enter your password</label>
+                    <input type="password" name="password" id="" required>
+                </div>
+                <div>
+                    <textarea name="add" id="" placeholder="dejanos tu comentario!"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </footer>
     </main>
 </body>
 </html>
