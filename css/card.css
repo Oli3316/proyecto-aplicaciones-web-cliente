@@ -1,0 +1,80 @@
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo oscuro y tipografía */
+body {
+    background-color: #121212;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sección principal */
+.product-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: row;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+/* Estilo de la información del producto */
+.product-info {
+    color: #fff;
+    text-align: left;
+    max-width: 500px;
+}
+
+/* Título principal */
+.product-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+/* Descripción del producto */
+.product-description {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Precio */
+.product-price {
+    font-size: 1.5rem;
+    color: #00ff88;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Botón de compra */
+.buy-btn {
+    background: linear-gradient(135deg, #00ff88, #00b386);
+    border: none;
+    padding: 14px 40px;
+    border-radius: 25px;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.buy-btn:hover {
+    background: linear-gradient(135deg, #00b386, #007755);
+    transform: scale(1.05);
+}
+
+/* Imagen del producto */
+.product-image img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}

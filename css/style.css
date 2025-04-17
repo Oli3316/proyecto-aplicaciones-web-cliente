@@ -11,7 +11,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    background: rgba(0, 0, 0, 0.7);
     padding: 15px 0;
     position: fixed;
     top: 0;
@@ -42,14 +42,32 @@ main{
 .modelY{
   background: url(../img/ModelY2.avif) center / cover no-repeat;
   height: 100vh;
+  display: block;
+  align-content: center;
+  .sub-modelY{
+    padding-bottom: 290px;
+  }
 }
 
 .model3{
   background: url(../img/Model3.avif) center / cover no-repeat;
   height: 100vh;
+  display: block;
+  align-content: center;
+  .sub-model3{
+    padding-bottom: 700px;
+  }
 }
 
-
+.modelY{
+  background: url(../img/Model3.avif) center / cover no-repeat;
+  height: 100vh;
+  display: block;
+  align-content: center;
+  .sub-modelY{
+    padding-bottom: 700px;
+  }
+}
 
 a{
     text-decoration: none;
@@ -65,7 +83,7 @@ a:hover {
 
 /*** ESTILOS BOTÓN CONTACT US ***/
 .order-button {
-  background-color: #ffffff00; /* Color azul similar */
+  background-color: #ffffff00; 
   color: white;
   padding: 12px 24px;
   font-size: 16px;
@@ -73,6 +91,7 @@ a:hover {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 2px;
 }
 
 a.order-button{
@@ -80,6 +99,13 @@ a.order-button{
 }
 
 .order-button:hover {
-  background-color: #000000; /* Un azul un poquito más oscuro al hacer hover */
+  background-color: #000000; /* Un negro un poquito más oscuro al hacer hover */
   transform: scale(1.05); /* Hace el botón un poco más grande */
+}
+
+
+/*ESTILOS FOOTER */
+footer {
+  display: flex;
+  flex-direction: column;
 }
