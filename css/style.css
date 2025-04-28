@@ -1,111 +1,141 @@
-.header{
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    background: url('../img/CyberTruck.avif') center/cover no-repeat;
-    align-items: center;
-    color: white;
-    text-align: center;
-    padding-top: 190px; 
+/* Estilo general */
+body {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
-.nav{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Para que quede encima de otros elementos */
-}
-.nav-links{
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    
+/* NavBar */
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
-body{
-    margin: auto;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
 }
 
-main{
-  height: 100vh;
-  align-items: center;
+a {
+  text-decoration: none;
   color: white;
-  text-align: center;
+  margin-left: 25px;
 }
 
-/***ESTILOS PARA LOS DIFERENTES BLOQUES EN EL MAIN***/
-.modelY{
-  background: url(../img/ModelY2.avif) center / cover no-repeat;
-  height: 100vh;
-  display: block;
-  align-content: center;
-  .sub-modelY{
-    padding-bottom: 290px;
-  }
-}
-
-.model3{
-  background: url(../img/Model3.avif) center / cover no-repeat;
-  height: 100vh;
-  display: block;
-  align-content: center;
-  .sub-model3{
-    padding-bottom: 700px;
-  }
-}
-
-.modelY{
-  background: url(../img/Model3.avif) center / cover no-repeat;
-  height: 100vh;
-  display: block;
-  align-content: center;
-  .sub-modelY{
-    padding-bottom: 700px;
-  }
-}
-
-a{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    margin-left: 25px;
-}
 a:hover {
-    color: rgb(255, 255, 255);
-    transition: 0.4s;
-    transform: scale(1.5);
-    text-decoration: underline;
+  color: white;
+  transition: 0.4s;
+  transform: scale(1.2);
+  text-decoration: underline;
 }
 
-/*** ESTILOS BOTÓN CONTACT US ***/
-.order-button {
-  background-color: #ffffff00; 
+/* Header (Cybertruck Section) */
+.header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  text-align: center;
   color: white;
+}
+
+/* Models*/
+.model-container {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Imagenes de fondo para cada contenedor */
+.model3 {
+  background-image: url('../img/Model3.avif');
+}
+
+.modelY {
+  background-image: url('../img/ModelY2.avif');
+}
+
+.modelX {
+  background-image: url('../img/ModelX.avif');
+}
+
+.modelS {
+  background-image: url('../img/ModelS.avif');
+}
+
+.cybertruck {
+  background-image: url('../img/CyberTruck.avif');
+  color: white;
+}
+
+/* Buttons */
+.order-button {
+  background-color: transparent;
+  color: black;
   padding: 12px 24px;
   font-size: 16px;
-  border: none;
+  border: 2px solid black;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-left: 2px;
-}
-
-a.order-button{
-  text-decoration: none;
+  margin: 10px;
 }
 
 .order-button:hover {
-  background-color: #000000; /* Un negro un poquito más oscuro al hacer hover */
-  transform: scale(1.05); /* Hace el botón un poco más grande */
+  background-color: black;
+  color: white;
+  transform: scale(1.05);
 }
 
-
-/*ESTILOS FOOTER */
+/* Footer */
 footer {
-  display: flex;
-  flex-direction: column;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer li {
+  display: inline;
+  margin: 0 15px;
+}
+
+footer a {
+  color: #333;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
