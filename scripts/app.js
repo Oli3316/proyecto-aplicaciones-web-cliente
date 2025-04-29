@@ -75,3 +75,5 @@ productos.forEach(product => {
     const card = createProductCard(product);
     grid.appendChild(card);
 });
+
+

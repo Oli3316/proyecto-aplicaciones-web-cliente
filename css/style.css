@@ -47,7 +47,7 @@ a:hover {
   justify-content: center;
   padding-top: 100px;
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 /* Models*/
@@ -62,6 +62,10 @@ a:hover {
   justify-content: center;
   text-align: center;
   padding: 0 20px;
+}
+
+.model-container h1{
+  padding-bottom: 500px;
 }
 
 /* Imagenes de fondo para cada contenedor */
@@ -83,13 +87,12 @@ a:hover {
 
 .cybertruck {
   background-image: url('../img/CyberTruck.avif');
-  color: white;
 }
 
 /* Buttons */
 .order-button {
-  background-color: transparent;
-  color: black;
+  background-color: black;
+  color: rgb(255, 255, 255);
   padding: 12px 24px;
   font-size: 16px;
   border: 2px solid black;
@@ -100,8 +103,8 @@ a:hover {
 }
 
 .order-button:hover {
-  background-color: black;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   transform: scale(1.05);
 }
 

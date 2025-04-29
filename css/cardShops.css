@@ -111,8 +111,9 @@ body {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
+/*Clases para la card*/
 .product-card {
-    background-color: #1e1e1e;
+    background-color: #000000;
     padding: 20px;
     border-radius: 20px;
     display: flex;
