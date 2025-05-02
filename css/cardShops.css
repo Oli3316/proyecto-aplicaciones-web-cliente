@@ -127,10 +127,40 @@ body {
     border-radius: 15px;
     margin-bottom: 15px;
 }
-
-@media screen and (min-width: 400px) and (max-width: 480px){
+@media screen and (max-width: 768px) {
     .product-section {
-        display: flex;
         flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 40px 20px;
     }
-  }
+
+    .product-info {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .product-title {
+        font-size: 2.2rem;
+    }
+
+    .product-description {
+        font-size: 1rem;
+    }
+
+    .product-price {
+        font-size: 1.3rem;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .buy-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 30px;
+    }
+}
