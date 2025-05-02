@@ -76,4 +76,3 @@ productos.forEach(product => {
     grid.appendChild(card);
 });
 
-

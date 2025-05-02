@@ -108,6 +108,7 @@ a:hover {
   transform: scale(1.05);
 }
 
+
 /* Footer */
 footer {
   background-color: #f2f2f2;
@@ -135,10 +136,65 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive */
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .nav {
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+    padding: 5px 0;
+  }
+  .model-container h1 {
+    font-size: 36px;
+    margin-bottom: 150px;
+  }
+
+  .order-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+}
+
+
+
+
+
 @media screen and (max-width: 480px) {
   .nav-links {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .model-container {
+    padding: 80px 15px 15px;
+  }
+
+  .model-container h1 {
+    font-size: 28px;
+    margin-bottom: 100px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .order-button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  footer li {
+    display: block;
+    margin: 8px 0;
   }
 }
