@@ -6,7 +6,7 @@ body {
 
 /* NavBar */
 .nav {
-  width: 100%;
+  width: 100%; /* Utiliza el 100% del ancho*/
   display: flex;
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
@@ -139,13 +139,13 @@ footer a:hover {
 /* Media Queries */
 @media screen and (max-width: 768px) {
   .nav {
-    justify-content: flex-start;
+    justify-content: flex-start;  /* Centra el nav a la izquierda*/
     padding-left: 20px;
   }
 
   .nav-links {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; 
   }
 
   .nav-links a {
@@ -170,7 +170,7 @@ footer a:hover {
 
 @media screen and (max-width: 480px) {
   .nav-links {
-    flex-direction: column;
+    flex-direction: column; /* Utiliza la columna para mostrar el navegador*/
     gap: 10px;
   }
 
