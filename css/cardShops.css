@@ -95,12 +95,12 @@ body {
     font-weight: bold;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease; 
 }
 
 .buy-btn:hover {
-    background: linear-gradient(135deg, #00b386, #007755);
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #00b386, #007755); /*Degradado en el fondo del boton*/
+    transform: scale(1.05); /*Animacion en el boton*/
 }
 
 /* Imagen del producto */
@@ -127,6 +127,8 @@ body {
     border-radius: 15px;
     margin-bottom: 15px;
 }
+
+/*Media Queries*/
 @media screen and (max-width: 768px) {
     .product-section {
         flex-direction: column;
@@ -163,4 +165,9 @@ body {
         font-size: 1rem;
         border-radius: 30px;
     }
+
+    footer li {
+    display: inline-block; /*Ajuste el footer para que se vea en linea recta y quede mas prolijo*/
+    margin: 8px 0;
+  }
 }

@@ -194,7 +194,7 @@ footer a:hover {
   }
 
   footer li {
-    display: block;
+    display: inline-block; /*Ajuste el footer para que se vea en linea recta y quede mas prolijo*/
     margin: 8px 0;
   }
 }
