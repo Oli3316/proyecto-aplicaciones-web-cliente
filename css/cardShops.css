@@ -130,9 +130,33 @@ body {
 
 /*Media Queries*/
 @media screen and (max-width: 768px) {
+    .nav {
+        justify-content: flex-start;  /* Centra el nav a la izquierda*/
+        padding-left: 20px;
+      }
+    
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start; 
+      }
+    
+      .nav-links a {
+        margin-left: 0;
+        padding: 5px 0;
+      }
+      .model-container h1 {
+        font-size: 36px;
+        margin-bottom: 150px;
+      }
+    
+      .order-button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    
+    }
     .product-section {
         flex-direction: column;
-        text-align: center;
         height: auto;
         padding: 40px 20px;
     }
@@ -170,4 +194,3 @@ body {
     display: inline-block; /*Ajuste el footer para que se vea en linea recta y quede mas prolijo*/
     margin: 8px 0;
   }
-}
