@@ -1,4 +1,4 @@
-/*Seccion contacto*/
+/* Seccion contacto*/
 .contact-section {
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@
 }
   
 
-/*Fondo de la Card*/
+/* Fondo de la Card*/
   .contact-card {
     background-color: #000000;
     border-radius: 20px;
@@ -21,6 +21,7 @@
     text-align: center;
   }
   
+  /* Titulo de la card*/
   .contact-card h2 {
     margin-bottom: 10px;
     font-size: 28px;
@@ -44,7 +45,7 @@
     font-size: 14px;
   }
   
-  /*Focus: Aplica estilos a un elemento que tiene el foco, es decir cuando hace click aplica la siguiente clase.*/
+  /* Focus: Aplica estilos a un elemento que tiene el foco, es decir cuando hace click aplica la siguiente clase.*/
   .contact-card form input:focus,
   .contact-card form textarea:focus {
     outline: 2px solid #00ffae;
@@ -58,11 +59,11 @@
     color: #000;
     font-weight: bold;
     font-size: 1.2rem;
-    cursor: pointer;   /*Pointer: Cambia el cursor del mouse*/
+    cursor: pointer;   /* Pointer: Cambia el cursor del mouse*/
     transition: background 0.3s ease, transform 0.2s ease;
   }
   
   .contact-card button:hover {
     background: linear-gradient(135deg, #00b386, #007755);
-    transform: scale(1.05);   /*Especie de animacion*/
+    transform: scale(1.05);   /* Especie de animacion*/
   }

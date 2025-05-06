@@ -95,7 +95,7 @@ body {
     font-weight: bold;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease; /* Animacion del boton*/
 }
 
 .buy-btn:hover {
@@ -139,8 +139,6 @@ body {
         padding: 10px 20px;
       }
     
-    }
-    
     .product-section {
         flex-direction: column; /* Centra el section en forma de columna */
         text-align: center; /* Lo alinea en el centro*/
@@ -181,3 +179,4 @@ body {
         display: inline-block; /*Ajuste el footer para que se vea en linea recta y quede mas prolijo*/
         margin: 8px 0;
       }
+    }

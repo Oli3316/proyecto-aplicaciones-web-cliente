@@ -95,7 +95,7 @@ body {
     font-weight: bold;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease; 
+    transition: background 0.3s ease, transform 0.2s ease;  /* Animacion del boton*/
 }
 
 .buy-btn:hover {
@@ -130,6 +130,8 @@ body {
 
 /*Media Queries*/
 @media screen and (max-width: 768px) {
+
+    /* Luego con Js agregare el boton Hamburguesa*/
     .nav {
         justify-content: flex-start;  /* Centra el nav a la izquierda*/
         padding-left: 20px;
@@ -154,9 +156,8 @@ body {
         padding: 10px 20px;
       }
     
-    }
     .product-section {
-        flex-direction: column;
+        flex-direction: flex;
         height: auto;
         padding: 40px 20px;
     }
@@ -194,3 +195,4 @@ body {
     display: inline-block; /*Ajuste el footer para que se vea en linea recta y quede mas prolijo*/
     margin: 8px 0;
   }
+ }
