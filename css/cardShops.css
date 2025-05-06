@@ -52,6 +52,7 @@ body {
     flex-direction: row;
     padding: 0 20px;
     gap: 40px;
+    margin-top: 80px; 
 }
 
 /* Estilo de la información del producto */
@@ -132,6 +133,7 @@ body {
 @media screen and (max-width: 768px) {
 
     /* Luego con Js agregare el boton Hamburguesa*/
+    /* Nav Responsive en CardShop*/
     .nav {
         justify-content: flex-start;  /* Centra el nav a la izquierda*/
         padding-left: 20px;
@@ -156,9 +158,8 @@ body {
         padding: 10px 20px;
       }
     
-    .product-section {
-        flex-direction: flex;
-        height: auto;
+      .product-section {
+        flex-direction: column;
         padding: 40px 20px;
     }
 
