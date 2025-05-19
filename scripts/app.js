@@ -36,7 +36,7 @@ const productos = [
     }
 ];
 
-const grid = document.querySelector('.product-section');
+const grid = document.querySelector('.product-grid');
 
 function createProductCard(product) {
     const card = document.createElement('article');
@@ -62,6 +62,21 @@ function createProductCard(product) {
     button.classList.add('buy-btn');
     button.textContent = 'Buy Now';
 
+    // Evento: Al hacer clic en Buy Now
+
+    function add (product) {
+        button.addEventListener('click', () => {
+             // Oculta todas las demás cartas
+            document.querySelectorAll('.product-card').forEach(c => c.style.display = 'none');
+
+            // Muestra solo esta
+            card.style.display = 'flex';
+    });
+    }
+
+    add ();
+   
+
     card.appendChild(img);
     card.appendChild(title);
     card.appendChild(description);
@@ -75,4 +90,5 @@ productos.forEach(product => {
     const card = createProductCard(product);
     grid.appendChild(card);
 });
+
 

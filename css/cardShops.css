@@ -44,7 +44,7 @@ body {
 }
 
 /* Sección principal */
-.product-section {
+.product-grid {
     display: flex;
     justify-content: center;
     align-items: center;
