@@ -36,6 +36,10 @@
 }
 
 
+/*Main 100vh*/
+main {
+  height: 100vh
+}
 
 /* Fondo oscuro y tipografía */
 body {
@@ -128,6 +132,13 @@ body {
 .clear-cart-btn:hover {
   background-color: #cc0000;
   transform: scale(1.05);
+}
+
+/*Contador de producto*/
+.product-card .unit-count {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 10px;
 }
 
 /*Media Queries*/
