@@ -1,124 +1,148 @@
-// admin.js - CRUD completo para Airtable
-
 const TOKEN = 'patHqDf8tsioaqEGA.1977b5eec854ca829b772e8ab69fac180a01a665ab876e75c5968d1feb0553bf';
 const BASE_ID = 'app6UpkW3Hi7iNy43';
 const TABLE_NAME = 'Products';
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
 
-const headers = {
-  'Authorization': `Bearer ${TOKEN}`,
-  'Content-Type': 'application/json'
-};
+const productTbody = document.getElementById('product-tbody');
+const addForm = document.getElementById('add-product-form');
+const inputName = document.getElementById('new-name');
+const inputPrice = document.getElementById('new-price');
 
-const tbody = document.getElementById('product-tbody');
-const form = document.getElementById('add-product-form');
-
-// Leer productos y renderizar
-async function fetchProducts() {
+async function fetchProductos() {
   try {
-    const res = await fetch(API_URL, { headers });
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    const data = await res.json();
-
-    tbody.innerHTML = '';
-    data.records.forEach(product => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${product.fields.Nombre || ''}</td>
-        <td>${product.fields.Precio || ''}</td>
-        <td>
-          <button onclick="editProduct('${product.id}', '${product.fields.Nombre}', ${product.fields.Precio})">Edit</button>
-          <button onclick="deleteProduct('${product.id}')">Delete</button>
-        </td>
-      `;
-      tbody.appendChild(tr);
+    const response = await fetch(API_URL, {
+      headers: { Authorization: `Bearer ${TOKEN}` }
     });
+    const data = await response.json();
+    if (data.records) {
+      mostrarProductos(data.records);
+    } else {
+      productTbody.innerHTML = '<tr><td colspan="3">No products found</td></tr>';
+    }
   } catch (error) {
-    alert('Error cargando productos: ' + error.message);
+    console.error('Error fetching products:', error);
+    productTbody.innerHTML = '<tr><td colspan="3">Error loading products</td></tr>';
   }
 }
 
-// Crear producto
-async function createProduct(nombre, precio) {
-  try {
-    const nuevo = {
-      fields: {
-        Nombre: nombre,
-        Precio: Number(precio)
-      }
-    };
+function mostrarProductos(productos) {
+  productTbody.innerHTML = '';
+  productos.forEach(prod => {
+    const tr = document.createElement('tr');
+    tr.dataset.id = prod.id;
 
-    const res = await fetch(API_URL, {
+    tr.innerHTML = `
+      <td contenteditable="true" class="editable name">${prod.fields.Nombre || ''}</td>
+      <td contenteditable="true" class="editable price">${prod.fields.Precio || ''}</td>
+      <td>
+        <button class="btn-save">Save</button>
+        <button class="btn-delete">Delete</button>
+      </td>
+    `;
+
+    // Botón borrar
+    tr.querySelector('.btn-delete').addEventListener('click', () => borrarProducto(prod.id));
+
+    // Botón guardar cambios
+    tr.querySelector('.btn-save').addEventListener('click', () => {
+      const nuevoNombre = tr.querySelector('.name').innerText.trim();
+      const nuevoPrecio = tr.querySelector('.price').innerText.trim();
+      editarProducto(prod.id, nuevoNombre, parseFloat(nuevoPrecio));
+    });
+
+    productTbody.appendChild(tr);
+  });
+}
+
+async function crearProducto(nombre, precio) {
+  const nuevoProducto = {
+    fields: {
+      Nombre: nombre,
+      Precio: precio
+    }
+  };
+
+  try {
+    const response = await fetch(API_URL, {
       method: 'POST',
-      headers,
-      body: JSON.stringify(nuevo)
+      headers: {
+        'Authorization': `Bearer ${TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(nuevoProducto)
     });
 
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    alert('Producto creado con éxito');
-    fetchProducts();
+    if (!response.ok) throw new Error('Error creando producto');
+
+    const data = await response.json();
+    console.log('Producto creado:', data);
+    fetchProductos(); // refrescar lista
   } catch (error) {
-    alert('Error creando producto: ' + error.message);
+    console.error(error);
+    alert('Error al crear producto');
   }
 }
 
-// Editar producto
-async function editProduct(id, nombreActual, precioActual) {
-  const nuevoNombre = prompt('Editar nombre:', nombreActual);
-  if (nuevoNombre === null) return;
-  const nuevoPrecio = prompt('Editar precio:', precioActual);
-  if (nuevoPrecio === null) return;
-
+async function borrarProducto(id) {
   try {
-    const body = {
-      fields: {
-        Nombre: nuevoNombre,
-        Precio: Number(nuevoPrecio)
-      }
-    };
-
-    const res = await fetch(`${API_URL}/${id}`, {
-      method: 'PATCH',
-      headers,
-      body: JSON.stringify(body)
-    });
-
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    alert('Producto editado con éxito');
-    fetchProducts();
-  } catch (error) {
-    alert('Error editando producto: ' + error.message);
-  }
-}
-
-// Borrar producto
-async function deleteProduct(id) {
-  if (!confirm('Confirmás eliminar el producto?')) return;
-
-  try {
-    const res = await fetch(`${API_URL}/${id}`, {
+    const response = await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
-      headers
+      headers: {
+        'Authorization': `Bearer ${TOKEN}`
+      }
     });
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    alert('Producto eliminado con éxito');
-    fetchProducts();
+    if (!response.ok) throw new Error('Error borrando producto');
+    console.log('Producto borrado:', id);
+    fetchProductos();
   } catch (error) {
-    alert('Error eliminando producto: ' + error.message);
+    console.error(error);
+    alert('Error al borrar producto');
   }
 }
 
-// Submit del formulario
-form.addEventListener('submit', e => {
+async function editarProducto(id, nombre, precio) {
+  const productoEditado = {
+    fields: {
+      Nombre: nombre,
+      Precio: precio
+    }
+  };
+
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productoEditado)
+    });
+
+    if (!response.ok) throw new Error('Error editando producto');
+
+    const data = await response.json();
+    console.log('Producto editado:', data);
+    fetchProductos();
+  } catch (error) {
+    console.error(error);
+    alert('Error al editar producto');
+  }
+}
+
+// Formulario agregar producto
+addForm.addEventListener('submit', e => {
   e.preventDefault();
-  const nombre = document.getElementById('new-name').value.trim();
-  const precio = document.getElementById('new-price').value.trim();
-  if (!nombre || !precio) return alert('Completá ambos campos.');
-  createProduct(nombre, precio);
-  form.reset();
+  const nombre = inputName.value.trim();
+  const precio = parseFloat(inputPrice.value);
+
+  if (!nombre || isNaN(precio)) {
+    alert('Por favor, ingresa un nombre y un precio válido');
+    return;
+  }
+
+  crearProducto(nombre, precio);
+  addForm.reset();
 });
 
-// Inicializar
-fetchProducts();
-window.editProduct = editProduct;
-window.deleteProduct = deleteProduct;
+// Cargar productos al iniciar
+fetchProductos();
