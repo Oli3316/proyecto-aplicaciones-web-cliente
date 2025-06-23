@@ -1,5 +1,5 @@
 // API
-const TOKEN = 'patZoegeZl1MiWxGZ.e427fff4064a5e8ea1339f0ddee6ae0db4f64fb5269450db7308ce17183ded4c';
+const TOKEN = 'patHqDf8tsioaqEGA.1977b5eec854ca829b772e8ab69fac180a01a665ab876e75c5968d1feb0553bf';
 const BASE_ID = 'app6UpkW3Hi7iNy43';
 const TABLE_NAME = 'Products';
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
@@ -56,7 +56,7 @@ document.querySelectorAll('.btn-add-products')?.forEach(btn => {
     }
 
     localStorage.setItem('productosSeleccionados', JSON.stringify(productosGuardados));
-    window.location.href = './Shop.html';
+     alert("Added to cart successfully!");
   });
 });
 
@@ -92,6 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Limpiar carrito
 document.getElementById('clear-cart')?.addEventListener('click', () => {
-  localStorage.removeItem('productosSeleccionados');
-  window.location.reload();
+  if (confirm('Are you sure you want to clear your cart?')) {
+    localStorage.removeItem('productosSeleccionados');
+    window.location.reload();
+  }
 });
