@@ -1,5 +1,5 @@
 //Protección con contraseña simple (sólo para administrador) 
-const adminPassword = 'oli2025'; // Cambiá esta contraseña
+const adminPassword = 'oli2025'; 
 (function verificarAcceso() {
   const clave = prompt('Ingrese la contraseña de administrador:');
   if (clave !== adminPassword) {
@@ -10,16 +10,16 @@ const adminPassword = 'oli2025'; // Cambiá esta contraseña
 })();
 
 //CRUD con API
-const TOKEN = 'patHqDf8tsioaqEGA.1977b5eec854ca829b772e8ab69fac180a01a665ab876e75c5968d1feb0553bf';
+const TOKEN = 'patXvXv3TJalTDWhl.f7ab8bfed6a7bca37cf25895dd89fc5938e7bed005cbb71d5d8028ca2302c6e7';
 const BASE_ID = 'app6UpkW3Hi7iNy43';
 const TABLE_NAME = 'Products';
-//const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;´
-const API_URL = 'https://api.airtable.com/v0/app6UpkW3Hi7iNy43/Products'; 
+const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
 
 const productTbody = document.getElementById('product-tbody');
 const addForm = document.getElementById('add-product-form');
 const inputName = document.getElementById('new-name');
 const inputPrice = document.getElementById('new-price');
+
 
 async function fetchProductos() {
   try {
