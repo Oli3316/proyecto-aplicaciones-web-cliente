@@ -1,7 +1,20 @@
+//Protección con contraseña simple (sólo para administrador) 
+const adminPassword = 'oli2025'; // Cambiá esta contraseña
+(function verificarAcceso() {
+  const clave = prompt('Ingrese la contraseña de administrador:');
+  if (clave !== adminPassword) {
+    alert('Acceso denegado');
+    document.body.innerHTML = '<h2 style="color:white; text-align:center; margin-top: 20%;">Acceso restringido</h2>';
+    throw new Error('Acceso denegado');
+  }
+})();
+
+//CRUD con API
 const TOKEN = 'patHqDf8tsioaqEGA.1977b5eec854ca829b772e8ab69fac180a01a665ab876e75c5968d1feb0553bf';
 const BASE_ID = 'app6UpkW3Hi7iNy43';
 const TABLE_NAME = 'Products';
-const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
+//const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;´
+const API_URL = 'https://api.airtable.com/v0/app6UpkW3Hi7iNy43/Products'; 
 
 const productTbody = document.getElementById('product-tbody');
 const addForm = document.getElementById('add-product-form');

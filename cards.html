@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baker´s Cars</title>
     <link rel="stylesheet" href="./css/card.css">
-    <link rel="stylesheet" href="./css/style.css">k
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
      <!-- Header -->
-    <header class="header-1">
+    <header>
         <nav>
             <div class="nav">
-                <ol class="nav-links">
+                <ol class="nav-links" id="nav-links">
                     <a href="./index.html">Home</a>           
                     <a href="./disponibles.html">Availables</a>
                     <a href="./Shop.html">Shop</a>
                     <a href="./contactUs.html">Contact Us</a>
                 </ol>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
@@ -97,13 +102,15 @@
      <!-- Footer -->
   <footer>
     <div>
-      <ul>
+       <ul>
         <li><a href="">Tesla © 2025</a></li>
         <li><a href="./contactUs.html">Contact Us</a></li>
         <li><a href="https://www.google.com/maps/place/San+Pedro">Locations</a></li>
-      </ul>
+        <li><a href="./admin/admin.html">Admin</a></li>
+       </ul>
     </div>
   </footer>
 </body>
 <script src="./scripts/app.js"></script>
+<script src="./scripts/nav.js"></script>
 </html>

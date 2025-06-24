@@ -8,7 +8,7 @@ async function crearProducto(nombre, precio) {
   const nuevoProducto = {
     fields: {
       Nombre: nombre,
-      Precio: precio
+      Precio: preciox
     }
   };
 
@@ -85,6 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tarjeta.querySelector('.confirm-buy').addEventListener('click', () => {
       crearProducto(producto.nombre, producto.precioTotal);
     });
+    tarjeta.querySelector('.confirm-buy').addEventListener('click', () => {
+  localStorage.setItem('fromCart', 'true');
+  localStorage.setItem('selectedProducts', JSON.stringify(productos));
+  window.location.href = './contactUs.html';
+});
 
     contenedor.appendChild(tarjeta);
   });

@@ -15,6 +15,7 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
+  height: 30px;
 }
 
 .nav-links {
@@ -135,6 +136,60 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* Menu desplegable hamburguer*/
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  position: absolute;
+  left: 20px; 
+  top: 20px;
+}
+.hamburger span {
+  background-color: white;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mejora el menú desplegado */
+.nav-links.active {
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 40px 20px 20px;
+  align-items: flex-start;
+  text-align: left;
+}
+/* Animación del ícono al estar activo */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Estilo para mostrar/ocultar el menú */
+.nav-links.active {
+  display: flex !important;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+  z-index: 1000;
+
+}
+
 /* Media Queries */
 @media screen and (max-width: 768px) {
   .nav {
@@ -160,6 +215,14 @@ footer a:hover {
     font-size: 14px;
     padding: 10px 20px;
   }
+
+  .hamburger {
+  display: flex;
+}
+
+.nav-links {
+  display: none; /* Oculta el menú por defecto en móvil */
+}
 
 }
 
