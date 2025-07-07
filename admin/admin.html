@@ -18,27 +18,33 @@
   </header>
 
   <main class="container">
-    <h1>Admin Panel - Products</h1>
+  <h1>Admin Panel - Products</h1>
 
-    <form id="add-product-form" class="add-form">
-      <input type="text" id="new-name" placeholder="Product Name" required />
-      <input type="number" id="new-price" placeholder="Price" required min="0" step="0.01" />
-      <button type="submit" class="btn-add">Add Product</button>
-    </form>
+  <form id="add-product-form" class="add-form">
+    <input type="text" id="new-name" placeholder="Product Name" required />
+    <input type="number" id="new-price" placeholder="Price" required min="0" step="0.01" />
+    <input type="number" id="new-stock" placeholder="Stock" required min="0" step="1" />
+    <input type="url" id="new-image" placeholder="Image URL (optional)" />
+    <button type="submit" class="btn-add">Add Product</button>
+  </form>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price (u$d)</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="product-tbody">
-        <!-- Productos se cargarán aquí -->
-      </tbody>
-    </table>
-  </main>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price (u$d)</th>
+        <th>Stock</th>
+        <th>Description</th>
+        <th>Image URL</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="product-tbody">
+      <!-- Product rows rendered by JS -->
+    </tbody>
+  </table>
+</main>
 
   <script src="./admin.js"></script>
 </body>

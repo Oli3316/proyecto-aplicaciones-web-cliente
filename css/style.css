@@ -15,7 +15,6 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  height: 30px;
 }
 
 .nav-links {
@@ -195,6 +194,7 @@ footer a:hover {
   .nav {
     justify-content: flex-start;  /* Centra el nav a la izquierda*/
     padding-left: 20px;
+    height: 30px;
   }
 
   .nav-links {

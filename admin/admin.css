@@ -1,163 +1,121 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* admin.css */
 
-/* Body & background */
 body {
+  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #121212;
-  color: #eee;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Nav */
-.nav {
-  display: flex;
-  gap: 20px;
-  background: rgba(0,0,0,0.7);
-  padding: 15px 20px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  align-items: center;
-}
-
-.nav a {
-  color: #eee;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav a:hover {
-  color: #00ff88;
-}
-
-/* Main container */
-.container {
-  margin: 100px auto 40px;
-  max-width: 900px;
-  padding: 0 20px;
-}
-
-/* Heading */
-h1 {
-  margin-bottom: 30px;
-  font-size: 2.8rem;
-  text-align: center;
-  color: #00ff88;
-}
-
-/* Form */
-.add-form {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.add-form input {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  min-width: 180px;
-}
-
-.add-form input:focus {
-  outline: 2px solid #00ff88;
-}
-
-.btn-add {
-  background: linear-gradient(135deg, #00ff88, #00b386);
-  border: none;
-  border-radius: 25px;
-  color: #000;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 12px 25px;
-  font-size: 1.1rem;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn-add:hover {
-  background: linear-gradient(135deg, #00b386, #007755);
-  transform: scale(1.05);
-}
-
-/* Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #222;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-thead {
-  background-color: #00ff88;
-  color: #000;
-}
-
-th, td {
-  padding: 15px 20px;
-  text-align: left;
-  border-bottom: 1px solid #444;
-}
-
-tbody tr:hover {
-  background-color: #333;
-}
-
-td[contenteditable="true"] {
-  background-color: #111;
-  border-radius: 4px;
-  cursor: text;
-  outline: none;
-  transition: background-color 0.2s ease;
-}
-
-td[contenteditable="true"]:focus {
-  background-color: #005f3f;
   color: #fff;
 }
 
-button {
+.header {
+  background-color: #000;
+  padding: 1rem;
+}
+
+.nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: #00ff88;
+  margin-bottom: 2rem;
+}
+
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.add-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 160px;
+}
+
+.btn-add {
   background-color: #00ff88;
   border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: bold;
   cursor: pointer;
-  margin-right: 5px;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
 }
 
-button:hover {
-  background-color: #00b386;
+.btn-add:hover {
+  background-color: #00cc6f;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .add-form {
-    flex-direction: column;
-    align-items: center;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+}
 
-  .add-form input,
-  .btn-add {
-    width: 100%;
-    max-width: 300px;
-  }
+th, td {
+  padding: 12px;
+  text-align: center;
+}
 
-  th, td {
-    padding: 10px 8px;
-  }
+th {
+  background-color: #00ff88;
+  color: #000;
+  font-weight: bold;
+}
+
+tr:not(:first-child):hover {
+  background-color: #2a2a2a;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="url"] {
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  width: 90%;
+}
+
+button {
+  padding: 6px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.update-btn {
+  background-color: #00ff88;
+}
+
+button.delete-btn {
+  background-color: #ff5555;
+  color: white;
+}
+
+img.product-img {
+  width: 60px;
+  height: auto;
+  border-radius: 8px;
 }
