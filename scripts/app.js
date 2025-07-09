@@ -101,7 +101,7 @@ function mostrarCarrito() {
   if (!contenedor) return;
 
   const productos = JSON.parse(localStorage.getItem('productosSeleccionados')) || [];
-  // ✅ Mostrar en consola lo que hay en el carrito
+  //Mostrar en consola lo que hay en el carrito
   console.log('🛒 Productos en el carrito:', productos);
   contenedor.innerHTML = '';
   
@@ -194,7 +194,7 @@ async function mostrarProductosParaComprar() {
   });
 }
 
-// Lógica al cargar la página
+//Lógica al cargar la página
 document.addEventListener('DOMContentLoaded', async () => {
   if (document.getElementById('shop-container')) {
     await sincronizarProductosAirtableALocalStorage();
