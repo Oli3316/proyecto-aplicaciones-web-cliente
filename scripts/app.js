@@ -13,14 +13,13 @@ async function obtenerProductosDesdeAirtable() {
   return data.records || [];
 }
 
-// Función que crea y retorna una tarjeta DOM para un producto
+// Crear tarjeta de producto
 function crearTarjetaProducto(producto, isFromCart = false) {
   if (!producto || !producto.nombre || !producto.precioUnitario) return document.createElement('div');
 
   const tarjeta = document.createElement('div');
   tarjeta.classList.add('product-card');
 
-  // Imagen
   if (producto.imagen) {
     const img = document.createElement('img');
     img.src = producto.imagen;
@@ -28,26 +27,20 @@ function crearTarjetaProducto(producto, isFromCart = false) {
     tarjeta.appendChild(img);
   }
 
-  // Nombre
   const h2 = document.createElement('h2');
   h2.textContent = producto.nombre;
   tarjeta.appendChild(h2);
 
-  // Descripción
   if (producto.descripcion) {
     const pDesc = document.createElement('p');
     pDesc.textContent = producto.descripcion;
     tarjeta.appendChild(pDesc);
   }
 
-  // Precio
   const pPrecio = document.createElement('p');
-  pPrecio.innerHTML = `<strong>Price:</strong> u$d ${
-    (producto.precioTotal || producto.precioUnitario)?.toLocaleString?.() ?? 'N/A'
-  }`;
+  pPrecio.innerHTML = `<strong>Price:</strong> u$d ${(producto.precioTotal || producto.precioUnitario)?.toLocaleString?.() ?? 'N/A'}`;
   tarjeta.appendChild(pPrecio);
 
-  // Unidades (solo en carrito)
   if (isFromCart && producto.cantidad !== undefined) {
     const pCantidad = document.createElement('p');
     pCantidad.classList.add('unit-count');
@@ -55,7 +48,6 @@ function crearTarjetaProducto(producto, isFromCart = false) {
     tarjeta.appendChild(pCantidad);
   }
 
-  // Botón "Buy now" si no es del carrito
   if (!isFromCart) {
     const btnBuy = document.createElement('button');
     btnBuy.textContent = 'Buy now';
@@ -80,7 +72,7 @@ function crearTarjetaProducto(producto, isFromCart = false) {
   return tarjeta;
 }
 
-// Agregar producto al carrito o aumentar cantidad
+// Agregar producto al carrito
 function agregarAlCarrito(nuevoProducto) {
   const productosGuardados = JSON.parse(localStorage.getItem('productosSeleccionados')) || [];
   const existente = productosGuardados.find(p => p.nombre === nuevoProducto.nombre);
@@ -101,10 +93,8 @@ function mostrarCarrito() {
   if (!contenedor) return;
 
   const productos = JSON.parse(localStorage.getItem('productosSeleccionados')) || [];
-  //Mostrar en consola lo que hay en el carrito
   console.log('🛒 Productos en el carrito:', productos);
   contenedor.innerHTML = '';
-  
 
   if (productos.length === 0) {
     contenedor.innerHTML = '<p style="color:white; font-size:1.2rem;">No cars selected.</p>';
@@ -120,16 +110,14 @@ function mostrarCarrito() {
   // Calcular total acumulado
   const total = productos.reduce((sum, p) => sum + (p.precioTotal || 0), 0);
 
-  // Mostrar total
+  // Contenedor de total + botón confirm
+  const summaryContainer = document.createElement('div');
+  summaryContainer.classList.add('checkout-summary');
+
   const pTotal = document.createElement('p');
   pTotal.innerHTML = `<strong>Total:</strong> u$d ${total.toLocaleString()}`;
-  pTotal.style.color = 'white';
-  pTotal.style.fontSize = '1.2rem';
-  pTotal.style.marginTop = '1rem';
-  pTotal.style.textAlign = 'center';
-  contenedor.appendChild(pTotal);
+  summaryContainer.appendChild(pTotal);
 
-  // Botón general "Confirm Purchase"
   const boton = document.createElement('button');
   boton.textContent = 'Confirm Purchase';
   boton.classList.add('confirm-buy-all');
@@ -139,10 +127,8 @@ function mostrarCarrito() {
     window.location.href = './contactUs.html';
   });
 
-  const divBoton = document.createElement('div');
-  divBoton.classList.add('confirm-all-container');
-  divBoton.appendChild(boton);
-  contenedor.appendChild(divBoton);
+  summaryContainer.appendChild(boton);
+  contenedor.appendChild(summaryContainer);
 }
 
 // Sincronizar Airtable con LocalStorage
@@ -194,7 +180,7 @@ async function mostrarProductosParaComprar() {
   });
 }
 
-//Lógica al cargar la página
+// Al cargar la página
 document.addEventListener('DOMContentLoaded', async () => {
   if (document.getElementById('shop-container')) {
     await sincronizarProductosAirtableALocalStorage();
