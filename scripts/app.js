@@ -4,6 +4,13 @@ const BASE_ID = 'app6UpkW3Hi7iNy43';
 const TABLE_NAME = 'Table 2';
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
 
+// 🔧 Función para obtener URL de imagen
+function obtenerURLImagen(imagen) {
+  if (typeof imagen === 'string') return imagen.trim();
+  if (Array.isArray(imagen) && imagen.length > 0 && imagen[0].url) return imagen[0].url;
+  return '';
+}
+
 // Obtener productos desde Airtable
 async function obtenerProductosDesdeAirtable() {
   const response = await fetch(API_URL, {
@@ -20,9 +27,10 @@ function crearTarjetaProducto(producto, isFromCart = false) {
   const tarjeta = document.createElement('div');
   tarjeta.classList.add('product-card');
 
-  if (producto.imagen) {
+  const imagenURL = obtenerURLImagen(producto.imagen);
+  if (imagenURL) {
     const img = document.createElement('img');
-    img.src = producto.imagen;
+    img.src = imagenURL;
     img.alt = producto.nombre || 'Product image';
     tarjeta.appendChild(img);
   }
@@ -57,7 +65,7 @@ function crearTarjetaProducto(producto, isFromCart = false) {
       agregarAlCarrito({
         nombre: producto.nombre,
         descripcion: producto.descripcion || '',
-        imagen: producto.imagen || '',
+        imagen: imagenURL,
         cantidad: 1,
         precioUnitario: producto.precioUnitario || 0,
         precioTotal: producto.precioUnitario || 0
@@ -147,7 +155,7 @@ async function sincronizarProductosAirtableALocalStorage() {
       productosGuardados.push({
         nombre: nombre,
         descripcion: p.Descripcion || '',
-        imagen: p.Imagen || '',
+        imagen: obtenerURLImagen(p.Imagen),
         cantidad: 0,
         precioUnitario: precio,
         precioTotal: precio
@@ -168,7 +176,7 @@ async function mostrarProductosParaComprar() {
     const producto = {
       nombre: p.Nombre,
       descripcion: p.Descripcion || '',
-      imagen: p.Imagen || '',
+      imagen: obtenerURLImagen(p.Imagen),
       precioUnitario: p.Precio || 0,
       precioTotal: p.Precio || 0
     };
