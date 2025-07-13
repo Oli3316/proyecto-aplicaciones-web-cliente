@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Panel - Baker´s Cars</title>
   <link rel="stylesheet" href="./admin.css" />
+  <link rel="stylesheet" href="../css/nav.css">
 </head>
 <body class="admin-page">
   <header class="header">
     <nav class="nav">
+        <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <ol class="nav-links" id="nav-links">
         <a href="../index.html">Home</a>
         <a href="../disponibles.html">Availables</a>
@@ -16,11 +22,6 @@
         <a href="../contactUs.html">Contact Us</a>
         <a href="../index.html" id="logout-btn">Logout</a>
       </ol>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </nav>
   </header>
 
@@ -54,19 +55,6 @@
   </main>
 
   <script src="./admin.js"></script>
-  <script>
-    // Menú hamburguesa solo para admin-page
-    document.addEventListener("DOMContentLoaded", () => {
-      if (document.body.classList.contains("admin-page")) {
-        const hamburger = document.getElementById("hamburger");
-        const navLinks = document.getElementById("nav-links");
-
-        hamburger.addEventListener("click", () => {
-          hamburger.classList.toggle("active");
-          navLinks.classList.toggle("active");
-        });
-      }
-    });
-  </script>
+  <script src="../scripts/nav.js"></script>
 </body>
 </html>

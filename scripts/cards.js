@@ -152,16 +152,6 @@ async function cargarProductos() {
   });
 }
 
-// Hamburger menú toggle
-function initHamburgerMenu() {
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('nav-links');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-  });
-}
 
 // Inicialización principal al cargar la página
 document.addEventListener('DOMContentLoaded', () => {

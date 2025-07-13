@@ -4,29 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Baker´s Cars</title>
-  <link rel="stylesheet" href="./css/card.css" />
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/card.css" />
+  <link rel="stylesheet" href="./css/nav.css">
+
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <nav class="nav">
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+  < <header>
+    <nav>
+      <div class="nav">
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ol class="nav-links" id="nav-links">
+          <a href="./index.html">Home</a>
+          <a href="./cards.html">Availables</a>
+          <a href="./Shop.html">Shop</a>
+          <a href="./contactUs.html">Contact Us</a>
+        </ol>
       </div>
-      <ol class="nav-links" id="nav-links">
-        <a href="./index.html">Home</a>
-        <a href="./cards.html">Availables</a>
-        <a href="./Shop.html">Shop</a>
-        <a href="./contactUs.html">Contact Us</a>
-      </ol>
     </nav>
   </header>
 
   <!-- Contenedor donde se cargan los productos -->
-  <main id="products-container" style="padding: 20px; display: flex; flex-direction: column; gap: 80px;"></main>
+  <main id="products-container"></main>
 
   <!-- Footer -->
   <footer>
@@ -39,8 +43,8 @@
       </ul>
     </div>
   </footer>
+      <script src="./scripts/nav.js"></script>
+    <script src="./scripts/cards.js" defer></script>
 
-  <script src="./scripts/nav.js"></script>
-  <script src="./scripts/cards.js"></script>
 </body>
 </html>

@@ -121,17 +121,14 @@ img.product-img {
   border-radius: 8px;
 }
 
-/* Nav responsive (ADMIN) */
-
-
-.admin-page .nav {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.admin-page .nav-links {
+.nav-links {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -141,50 +138,6 @@ img.product-img {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .admin-page .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    background-color: #000;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-out;
-  }
-
-  .admin-page .nav-links.active {
-    max-height: 300px;
-    padding: 10px 0;
-  }
-
-  .admin-page .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-
-  .admin-page .hamburger span {
-    height: 3px;
-    width: 25px;
-    background: white;
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-
-  .admin-page .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .admin-page .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .admin-page .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
