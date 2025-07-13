@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baker´s Cars</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <!-- Header -->
   <header>
     <nav>
       <div class="nav">
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <ol class="nav-links" id="nav-links">
           <a href="./index.html">Home</a>
           <a href="./cards.html">Availables</a>
           <a href="./Shop.html">Shop</a>
           <a href="./contactUs.html">Contact Us</a>
         </ol>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
       </div>
     </nav>
-       <div class="model-container cybertruck">
-        <h1>Cybertruck</h1>
-        <div class="buttons">
-          <a class="order-button" href="./cards.html#cybertruck">Order Now</a>
-        </div>
-       </div> 
-    </header>
+
+    <div class="model-container cybertruck">
+      <h1>Cybertruck</h1>
+      <div class="buttons">
+        <a class="order-button" href="./cards.html#cybertruck">Order Now</a>
+      </div>
+    </div>
+  </header>
 
   <!-- Main -->
   <main>
@@ -74,7 +75,8 @@
       </ul>
     </div>
   </footer>
+
+  <script src="./scripts/app.js" defer></script>
+  <script src="./scripts/nav.js" defer></script>
 </body>
-<script src="./scripts/app.js" defer></script>
-<script src="./scripts/nav.js"></script>
 </html>

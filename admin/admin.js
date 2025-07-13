@@ -23,6 +23,9 @@ const tbody = document.getElementById('product-tbody');
 const form = document.getElementById('add-product-form');
 const inputName = document.getElementById('new-name');
 const inputPrice = document.getElementById('new-price');
+const inputStock = document.getElementById('new-stock');
+const inputDesc = document.getElementById('new-description');
+const inputImage = document.getElementById('new-image');
 
 // Mostrar productos
 function fetchProducts() {
@@ -57,8 +60,11 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const name = inputName.value.trim();
   const price = parseFloat(inputPrice.value.trim());
+  const stock = parseInt(inputStock.value.trim(), 10);
+  const desc = inputDesc.value.trim();
+  const imageUrl = inputImage.value.trim();
 
-  if (!name || isNaN(price)) {
+  if (!name || isNaN(price) || isNaN(stock)) {
     alert('Completa todos los campos correctamente.');
     return;
   }
@@ -66,7 +72,10 @@ form.addEventListener('submit', e => {
   const newProduct = {
     fields: {
       Name: name,
-      Price: price
+      Price: price,
+      Description: desc || '',
+      "In stock": stock,
+      Image: imageUrl ? [{ url: imageUrl }] : []
     }
   };
 

@@ -6,46 +6,67 @@
   <title>Admin Panel - Baker´s Cars</title>
   <link rel="stylesheet" href="./admin.css" />
 </head>
-<body>
+<body class="admin-page">
   <header class="header">
     <nav class="nav">
-      <a href="../index.html">Home</a>
-      <a href="../disponibles.html">Availables</a>
-      <a href="../shop.html">Shop</a>
-      <a href="../contactUs.html">Contact Us</a>
-      <a href="../index.html" id="logout-btn">Logout</a>
+      <ol class="nav-links" id="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../disponibles.html">Availables</a>
+        <a href="../shop.html">Shop</a>
+        <a href="../contactUs.html">Contact Us</a>
+        <a href="../index.html" id="logout-btn">Logout</a>
+      </ol>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
   </header>
 
   <main class="container">
-  <h1>Admin Panel - Products</h1>
+    <h1>Admin Panel - Products</h1>
 
-  <form id="add-product-form" class="add-form">
-    <input type="text" id="new-name" placeholder="Product Name" required />
-    <input type="number" id="new-price" placeholder="Price" required min="0" step="0.01" />
-    <input type="number" id="new-stock" placeholder="Stock" required min="0" step="1" />
-    <input type="url" id="new-image" placeholder="Image URL (optional)" />
-    <button type="submit" class="btn-add">Add Product</button>
-  </form>
+    <form id="add-product-form" class="add-form">
+      <input type="text" id="new-name" placeholder="Product Name" required />
+      <input type="number" id="new-price" placeholder="Price" required min="0" step="0.01" />
+      <input type="number" id="new-stock" placeholder="Stock" required min="0" step="1" />
+      <input type="text" id="new-description" placeholder="Description (optional)" />
+      <input type="url" id="new-image" placeholder="Image URL (optional)" />
+      <button type="submit" class="btn-add">Add Product</button>
+    </form>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Price (u$d)</th>
-        <th>Stock</th>
-        <th>Description</th>
-        <th>Image URL</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody id="product-tbody">
-      <!-- Product rows rendered by JS -->
-    </tbody>
-  </table>
-</main>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price (u$d)</th>
+          <th>Description</th>
+          <th>Stock</th>
+          <th>Image URL</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="product-tbody">
+        <!-- productos renderizados en el js -->
+      </tbody>
+    </table>
+  </main>
 
   <script src="./admin.js"></script>
+  <script>
+    // Menú hamburguesa solo para admin-page
+    document.addEventListener("DOMContentLoaded", () => {
+      if (document.body.classList.contains("admin-page")) {
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+
+        hamburger.addEventListener("click", () => {
+          hamburger.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
+      }
+    });
+  </script>
 </body>
 </html>

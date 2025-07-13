@@ -6,11 +6,12 @@ body {
 
 /* NavBar */
 .nav {
-  width: 100%; /* Utiliza el 100% del ancho*/
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   background: rgba(0, 0, 0, 0.7);
-  padding: 15px 0;
+  padding: 15px 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -25,20 +26,73 @@ body {
   padding: 0;
 }
 
-a {
+.nav-links a {
   text-decoration: none;
   color: white;
-  margin-left: 25px;
+  font-size: 18px;
 }
 
-a:hover {
+.nav-links a:hover {
   color: white;
   transition: 0.4s;
-  transform: scale(1.2);
+  transform: scale(1.1);
   text-decoration: underline;
 }
 
-/* Header (Cybertruck Section) */
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  background-color: white;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Toggle animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Responsive Menu */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.95);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+/* Header Section */
 .header {
   height: 100vh;
   display: flex;
@@ -47,10 +101,10 @@ a:hover {
   justify-content: center;
   padding-top: 100px;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: #000;
 }
 
-/* Models*/
+/* Models */
 .model-container {
   height: 100vh;
   background-position: center;
@@ -64,49 +118,45 @@ a:hover {
   padding: 0 20px;
 }
 
-.model-container h1{
+.model-container h1 {
   padding-bottom: 500px;
+  color: white;
 }
 
-/* Imagenes de fondo para cada contenedor */
+/* Imagenes de fondo */
 .model3 {
   background-image: url('../img/Model3.avif');
 }
-
 .modelY {
   background-image: url('../img/ModelY2.avif');
 }
-
 .modelX {
   background-image: url('../img/ModelX.avif');
 }
-
 .modelS {
   background-image: url('../img/ModelS.avif');
 }
-
 .cybertruck {
   background-image: url('../img/CyberTruck.avif');
 }
 
-/* Buttons */
+/* Botones */
 .order-button {
   background-color: black;
-  color: rgb(255, 255, 255);
+  color: white;
   padding: 12px 24px;
   font-size: 16px;
   border: 2px solid black;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.5s ease, transform 0.2s ease; /* Animacion del boton*/
+  transition: background-color 0.5s ease, transform 0.2s ease;
   margin: 10px;
 }
 
 .order-button:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  background-color: white;
+  color: black;
 }
-
 
 /* Footer */
 footer {
@@ -135,77 +185,8 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Menu desplegable hamburguer*/
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 1001;
-  position: absolute;
-  left: 20px; 
-  top: 20px;
-}
-.hamburger span {
-  background-color: white;
-  height: 3px;
-  width: 100%;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* Mejora el menú desplegado */
-.nav-links.active {
-  background-color: rgba(0, 0, 0, 0.95);
-  padding: 40px 20px 20px;
-  align-items: flex-start;
-  text-align: left;
-}
-/* Animación del ícono al estar activo */
-.hamburger.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* Estilo para mostrar/ocultar el menú */
-.nav-links.active {
-  display: flex !important;
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  gap: 20px;
-  z-index: 1000;
-
-}
-
-/* Media Queries */
+/* Responsive ajustes adicionales */
 @media screen and (max-width: 768px) {
-  .nav {
-    justify-content: flex-start;  /* Centra el nav a la izquierda*/
-    padding-left: 20px;
-    height: 30px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start; 
-  }
-
-  .nav-links a {
-    margin-left: 0;
-    padding: 5px 0;
-  }
   .model-container h1 {
     font-size: 36px;
     margin-bottom: 150px;
@@ -216,26 +197,13 @@ footer a:hover {
     padding: 10px 20px;
   }
 
-  .hamburger {
-  display: flex;
-}
-
-.nav-links {
-  display: none; /* Oculta el menú por defecto en móvil */
-}
-
-}
-
-
-
-
-
-@media screen and (max-width: 480px) {
-  .nav-links {
-    flex-direction: column; /* Utiliza la columna para mostrar el navegador*/
+  .buttons {
+    flex-direction: column;
     gap: 10px;
   }
+}
 
+@media screen and (max-width: 480px) {
   .model-container {
     padding: 80px 15px 15px;
   }
@@ -245,18 +213,13 @@ footer a:hover {
     margin-bottom: 100px;
   }
 
-  .buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .order-button {
     width: 100%;
     max-width: 250px;
   }
 
   footer li {
-    display: inline-block; /*Ajuste el footer para que se vea en linea recta y quede mas prolijo*/
+    display: inline-block;
     margin: 8px 0;
   }
 }

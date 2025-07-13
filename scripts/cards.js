@@ -49,26 +49,6 @@ function crearSeccionProducto(producto) {
   }
   infoDiv.appendChild(precio);
 
-  if (producto.precioUnitario && producto.precioUnitario > 0) {
-    const btnComprar = document.createElement('button');
-    btnComprar.classList.add('buy-btn', 'btn-add-products');
-    btnComprar.textContent = 'Buy now';
-    btnComprar.addEventListener('click', () => {
-      agregarAlCarrito({
-        nombre: producto.nombre,
-        descripcion: producto.descripcion || '',
-        imagen: producto.imagen || '',
-        cantidad: 1,
-        precioUnitario: producto.precioUnitario,
-        precioTotal: producto.precioUnitario
-      });
-      alert('Added to cart successfully!');
-      window.location.href = './Shop.html';
-    });
-    infoDiv.appendChild(btnComprar);
-  }
-
-  section.appendChild(infoDiv);
 
   const imgDiv = document.createElement('div');
   imgDiv.classList.add('product-image');
@@ -100,6 +80,27 @@ function crearSeccionProducto(producto) {
   }
 
   section.appendChild(imgDiv);
+
+   if (producto.precioUnitario && producto.precioUnitario > 0) {
+    const btnComprar = document.createElement('button');
+    btnComprar.classList.add('buy-btn', 'btn-add-products');
+    btnComprar.textContent = 'Buy now';
+    btnComprar.addEventListener('click', () => {
+      agregarAlCarrito({
+        nombre: producto.nombre,
+        descripcion: producto.descripcion || '',
+        imagen: producto.imagen || '',
+        cantidad: 1,
+        precioUnitario: producto.precioUnitario,
+        precioTotal: producto.precioUnitario
+      });
+      alert('Added to cart successfully!');
+      window.location.href = './Shop.html';
+    });
+    infoDiv.appendChild(btnComprar);
+  }
+
+  section.appendChild(infoDiv);
 
   return section;
 }

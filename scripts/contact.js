@@ -5,26 +5,26 @@ const TABLE_NAME = 'Registros';
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
 
 //FORMULARIO DE REGISTRO
-
+//Conectamos con el formulario de registro y los mensajes de exito o error
 const registerForm = document.getElementById('register-form');
 const successMsg = document.getElementById('register-success');
 const errorMsg = document.getElementById('register-error');
 
-// Función para hashear contraseña (SHA-256)
+//Función para hashear contraseña (SHA-256)
 async function hashPassword(password) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  return hashHex;
+  const encoder = new TextEncoder(); //Convierte el texto a un formato especial
+  const data = encoder.encode(password); //Codifica la contraseña
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);//Aplica el hash
+  const hashArray = Array.from(new Uint8Array(hashBuffer));//Convertimos el hash en un array de numeros
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); //Lo convertimos a texto hexadecimal
+  return hashHex;//devuelve la contraseña codificada
 }
 
-//Función para guardar cookie (email del usuario por 7 días)
+//Función para guardar cookie 
 function setEmailCookie(email) {
   const days = 7;
-  const maxAge = days * 24 * 60 * 60; //segundos
-  document.cookie = `userEmail=${encodeURIComponent(email)}; max-age=${maxAge}; path=/`;
+  const maxAge = days * 24 * 60 * 60; //lo convertimos a segundos
+  document.cookie = `userEmail=${encodeURIComponent(email)}; max-age=${maxAge}; path=/`; //creamos la cookie
 }
 
 //Evento de envío del formulario de registro
@@ -66,44 +66,44 @@ registerForm.addEventListener('submit', async (e) => {
     const data = await response.json();
 
     if (response.ok) {
-      //Crear cookie con el email
-      setEmailCookie(email);
+  // Crear cookie con el email
+  setEmailCookie(email);
 
-      //Enviar email automático
-      try {
-        //Obtener productos del carrito
-        const productos = window.emailService.obtenerProductosCarrito();
-        const total = window.emailService.calcularTotal(productos);
 
-        if (productos.length > 0) {
-          //Enviar email de confirmación
-          const emailEnviado = await window.emailService.enviarEmailConfirmacion(name, email, productos, total);
-          
-          if (emailEnviado) {
-            successMsg.textContent = 'Registered successfully! Confirmation email sent.';
-            console.log('📧 Email de confirmación enviado a:', email);
-          } else {
-            successMsg.textContent = 'Registered successfully! (Email could not be sent)';
-            console.log('⚠️ Registro exitoso pero email no pudo ser enviado');
-          }
-        } else {
-          successMsg.textContent = 'Registered successfully!';
-          console.log('ℹ️ Registro exitoso sin productos en carrito');
-        }
-      } catch (emailError) {
-        console.error('Error en servicio de email:', emailError);
-        successMsg.textContent = 'Registered successfully! (Email service error)';
-      }
+  // Obtener productos del carrito
+  const productos = window.emailService.obtenerProductosCarrito();
+  const total = window.emailService.calcularTotal(productos);
 
-      errorMsg.textContent = '';
-      registerForm.reset();
-      
-      //Limpiar carrito después del registro exitoso
-      localStorage.removeItem('productosSeleccionados');
-      localStorage.removeItem('fromCart');
-      localStorage.removeItem('selectedProducts');
-      
-    } else {
+  let resumen = '';
+  if (productos.length > 0) {
+    //Crear resumen para mostrar
+    resumen = productos.map(p => `${p.nombre} (${p.cantidad}) - $${p.precioTotal}`).join('\n');
+  }
+
+  // Enviar email
+  const emailEnviado = await window.emailService.enviarEmailConfirmacion(name, email, productos, total);
+  
+  if (emailEnviado) {
+    successMsg.innerHTML = `
+      Registered successfully! Confirmation email sent.<br>
+      <strong>Purchase summary:</strong><br>
+      ${resumen.replace(/\n/g, '<br>')}<br>
+      <strong>Total: u$d ${total}</strong>
+    `;
+  } else {
+    successMsg.innerHTML = `
+      Registered successfully!<br>
+    `;
+  }
+
+  errorMsg.textContent = '';
+  registerForm.reset();
+
+  // Limpiar carrito
+  localStorage.removeItem('productosSeleccionados');
+  localStorage.removeItem('fromCart');
+  localStorage.removeItem('selectedProducts');
+} else {
       throw new Error(data.error?.message || 'Error submitting form.');
     }
   } catch (err) {
@@ -112,7 +112,7 @@ registerForm.addEventListener('submit', async (e) => {
   }
 });
 
-// FORMULARIO DE CONTACTO (VERIFICACIÓN DE REGISTRO)
+// FORMULARIO DE CONTACTO (VERIFICACIÓN DE REGISTRO Y ENVÍO DE EMAIL CON CITA)
 
 const contactForm = document.getElementById('contact-form');
 const contactError = document.getElementById('form-error');
@@ -141,16 +141,27 @@ contactForm.addEventListener('submit', async (e) => {
     const data = await response.json();
 
     if (data.records && data.records.length > 0) {
-      //Usuario registrado
-      contactSuccess.textContent = 'User found. Message ready to be sent!';
-      contactError.textContent = '';
-      contactForm.reset();
+      // Usuario registrado - Obtener productos del carrito y enviar email de cita
+      const productos = window.emailService.obtenerProductosCarrito();
+      const total = window.emailService.calcularTotal(productos);
       
-      //Aquí podrías enviar el mensaje de contacto también por email si lo deseas
-      console.log('Mensaje de contacto de usuario registrado:', { name, email, message });
+      const emailEnviado = await window.emailService.enviarEmailCita(name, email, message, productos, total);
+      
+      if (emailEnviado) {
+        contactSuccess.textContent = 'Appointment scheduled successfully! Check your email for confirmation.';
+        contactForm.reset();
+        // Limpiar carrito después de agendar la cita
+        localStorage.removeItem('productosSeleccionados');
+        localStorage.removeItem('fromCart');
+        localStorage.removeItem('selectedProducts');
+      } else {
+        contactSuccess.textContent = 'Appointment received but email could not be sent.';
+      }
+      
+      contactError.textContent = '';
       
     } else {
-      // Usuario no registrado (Mostrar mensaje y hacer scroll al formulario de registro)
+      // Usuario no registrado
       contactError.textContent = 'You are not registered. Please register below first.';
       contactSuccess.textContent = '';
 

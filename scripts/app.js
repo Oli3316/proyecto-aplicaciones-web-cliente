@@ -1,17 +1,17 @@
-// API
+//API
 const TOKEN = 'patXvXv3TJalTDWhl.f7ab8bfed6a7bca37cf25895dd89fc5938e7bed005cbb71d5d8028ca2302c6e7';
 const BASE_ID = 'app6UpkW3Hi7iNy43';
 const TABLE_NAME = 'Table 2';
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
 
-// 🔧 Función para obtener URL de imagen
+//Función para obtener URL de imagen
 function obtenerURLImagen(imagen) {
   if (typeof imagen === 'string') return imagen.trim();
   if (Array.isArray(imagen) && imagen.length > 0 && imagen[0].url) return imagen[0].url;
   return '';
 }
 
-// Obtener productos desde Airtable
+//Obtener productos desde Airtable
 async function obtenerProductosDesdeAirtable() {
   const response = await fetch(API_URL, {
     headers: { Authorization: `Bearer ${TOKEN}` }
@@ -20,7 +20,7 @@ async function obtenerProductosDesdeAirtable() {
   return data.records || [];
 }
 
-// Crear tarjeta de producto
+//Crear tarjeta de producto
 function crearTarjetaProducto(producto, isFromCart = false) {
   if (!producto || !producto.nombre || !producto.precioUnitario) return document.createElement('div');
 
@@ -80,7 +80,7 @@ function crearTarjetaProducto(producto, isFromCart = false) {
   return tarjeta;
 }
 
-// Agregar producto al carrito
+//Agregar producto al carrito
 function agregarAlCarrito(nuevoProducto) {
   const productosGuardados = JSON.parse(localStorage.getItem('productosSeleccionados')) || [];
   const existente = productosGuardados.find(p => p.nombre === nuevoProducto.nombre);
@@ -95,7 +95,7 @@ function agregarAlCarrito(nuevoProducto) {
   localStorage.setItem('productosSeleccionados', JSON.stringify(productosGuardados));
 }
 
-// Mostrar productos en el carrito
+//Mostrar productos en el carrito
 function mostrarCarrito() {
   const contenedor = document.getElementById('shop-container');
   if (!contenedor) return;
@@ -115,10 +115,10 @@ function mostrarCarrito() {
     contenedor.appendChild(tarjeta);
   });
 
-  // Calcular total acumulado
+  //Calcular total acumulado
   const total = productos.reduce((sum, p) => sum + (p.precioTotal || 0), 0);
 
-  // Contenedor de total + botón confirm
+  //Contenedor de total + botón confirm
   const summaryContainer = document.createElement('div');
   summaryContainer.classList.add('checkout-summary');
 
@@ -139,7 +139,7 @@ function mostrarCarrito() {
   contenedor.appendChild(summaryContainer);
 }
 
-// Sincronizar Airtable con LocalStorage
+//Sincronizar Airtable con LocalStorage
 async function sincronizarProductosAirtableALocalStorage() {
   const airtableProductos = await obtenerProductosDesdeAirtable();
   const productosGuardados = JSON.parse(localStorage.getItem('productosSeleccionados')) || [];
@@ -166,7 +166,7 @@ async function sincronizarProductosAirtableALocalStorage() {
   localStorage.setItem('productosSeleccionados', JSON.stringify(productosGuardados));
 }
 
-// Mostrar productos en Cards.html
+//Mostrar productos en Cards.html
 async function mostrarProductosParaComprar() {
   const contenedor = document.getElementById('cards-container') || document.body;
   const airtableProductos = await obtenerProductosDesdeAirtable();
@@ -188,7 +188,7 @@ async function mostrarProductosParaComprar() {
   });
 }
 
-// Al cargar la página
+//Al cargar la página
 document.addEventListener('DOMContentLoaded', async () => {
   if (document.getElementById('shop-container')) {
     await sincronizarProductosAirtableALocalStorage();
