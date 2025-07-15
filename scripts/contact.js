@@ -83,31 +83,31 @@ registerForm.addEventListener('submit', async (e) => {
   // Enviar email
   const emailEnviado = await window.emailService.enviarEmailConfirmacion(name, email, productos, total);
   
-  if (emailEnviado) {
+  if (emailEnviado) { //si el mail se envio correctamente ejecuta lo siguiente.
     successMsg.innerHTML = `
       Registered successfully! Confirmation email sent.<br>
       <strong>Purchase summary:</strong><br>
       ${resumen.replace(/\n/g, '<br>')}<br>
       <strong>Total: u$d ${total}</strong>
     `;
-  } else {
+  } else { //sino avisa que el registro fue exitoso pero sin confirmar el correo
     successMsg.innerHTML = `
       Registered successfully!<br>
     `;
   }
 
-  errorMsg.textContent = '';
-  registerForm.reset();
+  errorMsg.textContent = ''; //limpia mensaje de error
+  registerForm.reset();//reinicia el formulario de registro
 
-  // Limpiar carrito
+  // Limpiar carrito (borra todo lo que habia en el localStorage)
   localStorage.removeItem('productosSeleccionados');
   localStorage.removeItem('fromCart');
   localStorage.removeItem('selectedProducts');
 } else {
-      throw new Error(data.error?.message || 'Error submitting form.');
+      throw new Error(data.error?.message || 'Error submitting form.'); //si la respuesta de airtable no fue correcta lanza un error
     }
   } catch (err) {
-    errorMsg.textContent = `Error: ${err.message}`;
+    errorMsg.textContent = `Error: ${err.message}`; //mostramos el mensaje de error si algo falla (problema con Api o red)
     successMsg.textContent = '';
   }
 });
@@ -119,20 +119,20 @@ const contactError = document.getElementById('form-error');
 const contactSuccess = document.getElementById('form-success');
 
 contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  e.preventDefault(); //evita que el formulario se recarge 
 
-  const name = document.getElementById('name').value.trim();
+  const name = document.getElementById('name').value.trim(); //extraemos los valores y quitamos los espacios en blanco al inicio y al final del texto (string)
   const email = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
 
-  if (!name || !email || !message) {
+  if (!name || !email || !message) { //si hay campos vacios muestra error
     contactError.textContent = 'Please fill in all fields.';
     contactSuccess.textContent = '';
     return;
   }
 
   try {
-    const response = await fetch(`${API_URL}?filterByFormula=LOWER({Email})='${email.toLowerCase()}'`, {
+    const response = await fetch(`${API_URL}?filterByFormula=LOWER({Email})='${email.toLowerCase()}'`, { //busca en la base de si el correo ya existe en la tabla de Airtable usando filterByFormula
       headers: {
         Authorization: `Bearer ${TOKEN}`
       }
@@ -140,6 +140,7 @@ contactForm.addEventListener('submit', async (e) => {
 
     const data = await response.json();
 
+    //si esta registrado obtenemos los productos del carrito
     if (data.records && data.records.length > 0) {
       // Usuario registrado - Obtener productos del carrito y enviar email de cita
       const productos = window.emailService.obtenerProductosCarrito();
@@ -147,6 +148,7 @@ contactForm.addEventListener('submit', async (e) => {
       
       const emailEnviado = await window.emailService.enviarEmailCita(name, email, message, productos, total);
       
+      //si se envia correctamente el mail, muestra mensaje
       if (emailEnviado) {
         contactSuccess.textContent = 'Appointment scheduled successfully! Check your email for confirmation.';
         contactForm.reset();
